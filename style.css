@@ -36,6 +36,13 @@ main {
   width: 120px;
 }
 
+#placeholder-logo > i {
+  height: 120px;
+  margin: 20px;
+  opacity: 0.1;
+  width: 120px;
+}
+
 #placeholder-text {
   color: #80868b;
   cursor: default;

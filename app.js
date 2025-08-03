@@ -84,8 +84,8 @@ class App {
                     </div>
                     <div class="toolbar-container">
                         <div class="toolbar">
-                            <img class="toolbar-color" src="https://icon.now.sh/palette">
-                            <img class="toolbar-delete" src="https://icon.now.sh/delete">
+                            <i class="fa-solid fa-palette fa-xl toolbar-color"></i>
+                            <i class="fa-solid fa-trash fa-xl toolbar-delete"></i>
                         </div>
                     </div>
                 </div>
