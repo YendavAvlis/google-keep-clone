@@ -10,65 +10,83 @@ class App {
         this.$notes = document.querySelector('#notes');
         this.$placeholder = document.querySelector('#placeholder')
 
+        this.$formCloseButtons = document.querySelector('#form-close-button')
+
         this.addEventListeners()
     }
 
-    addEventListeners() {
-        document.body.addEventListener('click', e => {
-            this.handleFormClick(e)
-        });
+        addEventListeners() {
+            document.body.addEventListener('click', e => {
+                this.handleFormClick(e)
+            });
 
-        this.$form.addEventListener('submit', e => {
-            e.preventDefault();
+            this.$form.addEventListener('submit', e => {
+                e.preventDefault();
+                const title = this.$noteTitle.value;
+                const text = this.$noteText.value;
+
+                const hasNote = title || text;
+
+                if (hasNote){
+                    this.addNote({
+                        title,
+                        text
+                    })
+                }
+            });
+
+            this.$formCloseButtons.addEventListener('click', e =>{
+                e.stopPropagation();
+                this.closeForm();
+            })
+
+        }
+
+
+        handleFormClick(e) {
+            const isFormClicked = this.$form.contains(e.target);
+
             const title = this.$noteTitle.value;
             const text = this.$noteText.value;
-
             const hasNote = title || text;
 
-            if (hasNote){
+            if(isFormClicked) {
+                this.openForm();
+            } else if (hasNote){
                 this.addNote({
                     title,
                     text
-                })
+                });
+            } else {
+                this.closeForm();
             }
-        });
-    }
-
-        handleFormClick(e) {
-        const isFormClicked = this.$form.contains(e.target)
-
-        if(isFormClicked) {
-            this.openForm();
-        } else {
-            this.closeForm();
         }
-    }
 
         openForm() {
-        this.$form.classList.add('form-open')
-        this.$noteTitle.style.display = 'block'
-        this.$formButtons.style.display = 'block'
-    }
+            this.$form.classList.add('form-open')
+            this.$noteTitle.style.display = 'block'
+            this.$formButtons.style.display = 'block'
+        }
 
         closeForm() {
-        this.$form.classList.remove('form-open')
-        this.$noteTitle.style.display = 'none'
-        this.$formButtons.style.display = 'none'
-        this.$noteTitle.value = ''
-        this.$noteText.value = ''
-    }
+            this.$form.classList.remove('form-open')
+            this.$noteTitle.style.display = 'none'
+            this.$formButtons.style.display = 'none'
+            this.$noteTitle.value = ''
+            this.$noteText.value = ''
+        }
 
-    addNote(note) {
-        const newNote = {
-            title: note.title,
-            text: note.text,
-            color: 'white',
-            id: this.notes.length > 0 ? this.notes[this.notes.length - 1].id + 1: 1
-        };
-        this.notes = [...this.notes, newNote];
-        this.displayNotes();
-        this.closeForm();
-    }
+        addNote({ title, text }) {
+            const newNote = {
+                title,
+                text,
+                color: 'white',
+                id: this.notes.length > 0 ? this.notes[this.notes.length - 1].id + 1: 1
+            };
+            this.notes = [...this.notes, newNote];
+            this.displayNotes();
+            this.closeForm();
+        }
 
     displayNotes() {
         const hasNotes = this.notes.length > 0;
@@ -92,7 +110,5 @@ class App {
             `).join('')
     }
 }
-
-
 
 new App()
