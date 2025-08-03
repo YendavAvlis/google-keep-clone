@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Google Keepz</title>
+        <link rel="stylesheet" href="style.css"/>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans:400,500&display=swap"/>
+    </head>
+    <body>
+        <main>
+            <header>
+                <img class="header-logo" src="https://www.gstatic.com/images/branding/product/1x/keep_48dp.png" alt="Google Keep Logo">
+                <h2 class="header-title">Keep</h2>
+            </header>
+            <div id="form-container">
+                <form id="form" autocomplete="off">
+                    <input type="text" placeholder="Title" id="note-title">
+                    <input type="text" placeholder="Take a note..." id="note-text">
+                    <div>
+                        <button type="submit" id="submit-button">Submit</button>
+                        <button type="button" id="form-close-button">Close</button>
+                    </div>
+                </form>
+            </div>
+            <div id="notes"></div>
+            <div id="placeholder">
+                <img id="placeholder-logo" src="https://icon.now.sh/lightbulb_outline" alt="Placeholder Logo">
+                <p id="placeholder-text">Notes you add appear here</p>
+            </div>
+
+        </main>
+
+        <script src="app.js"></script>
+    </body>
+</html>
